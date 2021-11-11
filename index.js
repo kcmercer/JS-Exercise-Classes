@@ -42,8 +42,32 @@ class Airplane {
 */
 
 class Person {
-  
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+  eat(edible){
+    if(this.stomach.length < 10){
+      this.stomach.push(edible);
+    } else {
+      return `${this.name} is not hungry!`
+    }
+  }
+  poop(){
+    this.stomach = [];
+  }
+  toString(){
+    return `${this.name}, ${this.age}`;
+  }
 }
+
+const bob = new Person({
+  name: 'Bob',
+  age: 34,
+});
+
+console.log('Task 1 -', bob)
 
 /*
   TASK 2
@@ -60,8 +84,35 @@ class Person {
 */
 
 class Car {
-  
+  constructor(model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons){
+    return this.tank += gallons;
+  }
+  drive(distance){
+    if(distance > this.tank * this.milesPerGallon){
+      this.odometer = this.odometer + (this.tank * this.milesPerGallon)
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles!`
+    } else {
+      this.odometer = distance
+      this.tank = this.tank - (distance / this.milesPerGallon)
+    }
+  }
 }
+
+const impala = new Car({
+  model: 'Impala',
+  milesPerGallon: 25
+});
+
+console.log('task 2 -', impala)
+impala.fill(15);
+console.log('task 2 -', impala.drive(100))
 
 /*
   TASK 3
@@ -76,7 +127,14 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-  
+  constructor(obj){
+    this.name = obj.name;
+    this.age = obj.age;
+    this.location = obj.location;
+  }
+  speak(){
+    return `Hello my name is ${this.name}, and I am from ${this.location}`
+  }
 }
 
 /*
