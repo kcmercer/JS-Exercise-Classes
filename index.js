@@ -43,8 +43,8 @@ class Airplane {
 
 class Person {
   constructor(name, age){
-    this.name = name;
-    this.age = age;
+    this.name = name,
+    this.age = age,
     this.stomach = [];
   }
   eat(edible){
@@ -67,7 +67,7 @@ const bob = new Person({
   age: 34,
 });
 
-console.log('Task 1 -', bob)
+console.log(bob.toString())
 
 /*
   TASK 2
@@ -95,9 +95,9 @@ class Car {
   }
   drive(distance){
     if(distance > this.tank * this.milesPerGallon){
-      this.odometer = this.odometer + (this.tank * this.milesPerGallon)
+      this.odometer = this.odometer + (this.tank * this.milesPerGallon);
       this.tank = 0;
-      return `I ran out of fuel at ${this.odometer} miles!`
+      return `I ran out of fuel at ${this.odometer} miles!`;
     } else {
       this.odometer = distance
       this.tank = this.tank - (distance / this.milesPerGallon)
@@ -151,9 +151,31 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
-
+class Instructor extends Lambdasian{
+  constructor(obj){
+    super(obj);
+    this.specialty = obj.specialty;
+    this.favLanguage = obj.favLanguage;
+    this.catchPhrase = obj.catchPhrase;
+  }
+  demo(subj){
+    return `Today we are learning about ${subj}`
+  }
+  grade(stu, subj){
+    return `${stu} receives a perfect score on ${subj}`
+  }
 }
+
+const wester = new Instructor({
+  name: 'Wester',
+  age: 45,
+  location: 'Smyrna',
+  specialty: 'Language Arts',
+  favLanguage: 'English',
+  catchPhrase: 'Really?'
+})
+
+console.log(wester);
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
