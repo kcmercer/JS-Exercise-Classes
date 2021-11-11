@@ -191,8 +191,22 @@ console.log(wester);
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-   
+class Student extends Lambdasian{
+   constructor(obj){
+     super(obj);
+     this.previousBackground = obj.previousBackground;
+     this.className = obj.className;
+     this.favSubjects = obj.favSubjects;
+   }
+   listSubjects(){
+     return this.favSubjects.toString();
+   }
+   PRAssignment(subj){
+     return `${this.name} has submitted a PR for ${subj}`
+   }
+   sprintChallenge(subj){
+     return `${this.name} has begun sprint challenge on ${subj}`
+   }
 }
 
 /*
@@ -208,9 +222,34 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-   
+class ProjectManager extends Instructor{
+   constructor(obj){
+     super(obj);
+     this.gradClassname = obj.gradClassname;
+     this.favInstructor = obj.favInstructor;
+   }
+   standUp(slk){
+     return `${this.name} announces to ${slk}, @channel standy times!`
+   }
+   debugsCode(stu, subj){
+     return `${this.name} debugs ${stu}'s code on ${subj}`
+   }
 }
+
+const billy = new ProjectManager({
+  name: 'Billy',
+  age: 45,
+  location: 'Smyrna',
+  specialty: 'Language Arts',
+  favLanguage: 'English',
+  catchPhrase: 'Really?',
+  gradClassname: 'Web50',
+  favInstructor: 'Jim'
+})
+
+console.log('Task 6(2) -', billy.gradClassname)
+console.log('Task 6(6) -', billy.grade('Bob', 'Javascript'))
+console.log('Task 6(10) -',billy.debugsCode('John', 'CSS'))
 /*
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
